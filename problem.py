@@ -9,3 +9,4 @@ contents = os.listdir(directory_path)
 #print the contents of the directory
 for item in contents:
     print(item)
+    
