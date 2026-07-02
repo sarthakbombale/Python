@@ -1,0 +1,18 @@
+score = 36
+
+if score >= 36:
+    print("You passed")
+else:
+    print("You failed")
+
+
+signal = "Yellow"
+
+if signal == "Red":
+    print("Stop!")
+elif signal == "Yellow":
+    print("Slow down!")
+elif signal == "Green":
+    print("Go!")
+else:
+    print("Traffic light is broken!")
