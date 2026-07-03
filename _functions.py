@@ -37,3 +37,18 @@ if is_password_safe(user_input) == True:
     print("password accepted")
 else:
     print("Registration failed: Password is too short.")
+
+def format_currency(amount):
+    return f"${amount:,.2f}"
+
+def calculate_discount(price, discount_percentage):
+    return price * (discount_percentage / 100)
+
+total_price = 1000
+discount_amount = calculate_discount(total_price, 15)
+print(format_currency(discount_amount))
+
+def create_user_session(username,role="guest"):
+    return f'User login with {username} role is {role}'
+print(create_user_session("Sarthak", "admin"))
+print(create_user_session("Harry")) 
