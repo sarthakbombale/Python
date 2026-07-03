@@ -5,7 +5,6 @@ if score >= 36:
 else:
     print("You failed")
 
-
 signal = "Yellow"
 
 if signal == "Red":
@@ -16,3 +15,65 @@ elif signal == "Green":
     print("Go!")
 else:
     print("Traffic light is broken!")
+
+banned_user = {"harry","ommi"}
+current_user = "sujal"
+
+if current_user in banned_user:
+    print("Access Denied!!")
+else:
+    print("Welcome User!!")
+    
+age = 18
+id = True
+
+if age >= 18 and id == True:
+    print("You can enter the club")
+else:
+    print("You are minor,not allwoed")
+    
+cart_total = 45.00
+is_premium_member = False
+
+if is_premium_member == True:
+    shipping_fee = 0.00
+elif cart_total >= 50.00:
+    shipping_fee = 0.00
+    
+else:
+    shipping_fee =5.50
+    print(f'Your shipping fee is ${shipping_fee}')
+    
+existing_email = {"hari@gmail.com","sarthak@gmail.com"}
+input_email = {"ommi@gmail"}
+input_password = "12345678"
+
+if input_email == existing_email:
+    print("Email already exits!!")
+elif len(input_password) < 8:
+    print("Error: Password must be at least 8 characters long.")
+else:
+    print(f'Your are register successfully {input_email}')
+    
+user_role = "free"
+premium_videos = {"video_101", "video_102"}
+requested_video = "video_101"
+
+if requested_video not in premium_videos:
+    print("Playing free video...")
+elif user_role == "admin" or user_role == "premium":
+    print("Access Granted. Playing premium video...")
+else:
+    print("Access Denied. Please upgrade your subscription.")
+    
+active_coupons = {"SAVE10": 10, "WELCOME20": 20}
+expired_coupons = {"OLD5": 5}
+user_coupon = "SAVE10"
+
+if user_coupon in active_coupons:
+    discount = active_coupons[user_coupon]
+    print(f"Coupon applied! You got {discount}% off.")
+elif user_coupon in expired_coupons:
+    print("Error: This coupon code has expired.")
+else:
+    print("Error: Invalid coupon code.")
