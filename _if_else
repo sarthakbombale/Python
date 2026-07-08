@@ -77,3 +77,41 @@ elif user_coupon in expired_coupons:
     print("Error: This coupon code has expired.")
 else:
     print("Error: Invalid coupon code.")
+
+if requested_ticket not in vip_tickets:
+    print("Standard entry granted.")
+elif user_badge == "organizer" or user_badge == "vip":
+    print("Access Granted. Welcome to the VIP lounge.")
+else:
+    print("Access Denied. VIP ticket required.")
+
+if requested_file not in restricted_files:
+    print("Opening public file...")
+elif user_clearance == "manager" or user_clearance == "admin":
+    print("Access Granted. Opening restricted file...")
+else:
+    print("Access Denied. Security clearance required.")
+
+standard_rooms = {"SINGLE": 50, "DOUBLE": 80}
+booked_rooms = {"SUITE": 200}
+user_selection = "SINGLE"
+
+if user_selection in standard_rooms:
+    rate = standard_rooms[user_selection]
+    print(f"Room available! Price is ${rate} per night.")
+elif user_selection in booked_rooms:
+    print("Error: This room type is fully booked.")
+else:
+    print("Error: Invalid room type selection.")
+
+active_zones = {"ZONE_A": 5, "ZONE_B": 7}
+suspended_zones = {"ZONE_C": 10}
+user_zone = "ZONE_A"
+
+if user_zone in active_zones:
+    fee = active_zones[user_zone]
+    print(f"Delivery available! Shipping fee is ${fee}.")
+elif user_zone in suspended_zones:
+    print("Error: Delivery to this zone is temporarily suspended.")
+else:
+    print("Error: Out of delivery radius.")
