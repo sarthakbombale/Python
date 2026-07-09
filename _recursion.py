@@ -48,3 +48,40 @@ def count_items(items):
         return 1 + count_items(items[1:])
 my_list_items = ["banana","nana","na"]
 print(count_items(my_list_items))
+
+def get_power(base, exponent):
+    if exponent == 0:
+        return 1
+    return base * get_power(base, exponent - 1)
+
+print(get_power(2, 3))
+
+def reverse_string(text):
+    if len(text) == 0:
+        return text
+    return text[-1] + reverse_string(text[:-1])
+
+print(reverse_string("hello"))
+
+def sum_digits(n):
+    if n < 10:
+        return n
+    return (n % 10) + sum_digits(n // 10)
+
+print(sum_digits(1234))
+
+def count_vowels(text):
+    if not text:
+        return 0
+    is_vowel = 1 if text[0].lower() in "aeiou" else 0
+    return is_vowel + count_vowels(text[1:])
+
+print(count_vowels("python"))
+
+def find_max(numbers):
+    if len(numbers) == 1:
+        return numbers[0]
+    sub_max = find_max(numbers[1:])
+    return numbers[0] if numbers[0] > sub_max else sub_max
+
+print(find_max([3, 8, 1, 9, 2]))
