@@ -91,7 +91,6 @@ elif user_clearance == "manager" or user_clearance == "admin":
     print("Access Granted. Opening restricted file...")
 else:
     print("Access Denied. Security clearance required.")
-
 standard_rooms = {"SINGLE": 50, "DOUBLE": 80}
 booked_rooms = {"SUITE": 200}
 user_selection = "SINGLE"
@@ -115,3 +114,39 @@ elif user_zone in suspended_zones:
     print("Error: Delivery to this zone is temporarily suspended.")
 else:
     print("Error: Out of delivery radius.")
+
+active_coupons = {"SUMMER10": 10, "WELCOME5": 5}
+expired_coupons = {"WINTER20": 20}
+user_coupon = "SUMMER10"
+
+if user_coupon in active_coupons:
+    discount = active_coupons[user_coupon]
+    print(f"Coupon applied! You saved ${discount}.")
+elif user_coupon in expired_coupons:
+    print("Error: This coupon code has expired.")
+else:
+    print("Error: Invalid coupon code.")
+
+available_tickets = {"VIP": 150, "GENERAL": 50}
+sold_out_tickets = {"FRONT_ROW": 250}
+user_ticket = "VIP"
+
+if user_ticket in available_tickets:
+    price = available_tickets[user_ticket]
+    print(f"Tickets available! Price is ${price}.")
+elif user_ticket in sold_out_tickets:
+    print("Error: This ticket category is sold out.")
+else:
+    print("Error: This ticket type does not exist.")
+
+active_servers = {"US_EAST": "Online", "EU_WEST": "Online"}
+maintenance_servers = {"ASIA_SOUTH": "Maintenance"}
+user_server = "US_EAST"
+
+if user_server in active_servers:
+    status = active_servers[user_server]
+    print(f"Connection successful! Server status is {status}.")
+elif user_server in maintenance_servers:
+    print("Error: This server is down for scheduled maintenance.")
+else:
+    print("Error: Unknown server region selected.")
