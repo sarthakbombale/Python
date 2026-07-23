@@ -128,3 +128,42 @@ def find_min(numbers):
     return numbers[0] if numbers[0] < sub_min else sub_min
 
 print(find_min([5, 2, 9, 1, 7]))
+
+def sum_list(numbers):
+    if len(numbers) == 0:
+        return 0
+    return numbers[0] + sum_list(numbers[1:])
+
+print(sum_list([1, 2, 3, 4, 5]))
+
+def fibonacci(n):
+    if n <= 0:
+        return 0
+    if n == 1:
+        return 1
+    return fibonacci(n - 1) + fibonacci(n - 2)
+
+print(fibonacci(6))
+
+def countdown(n):
+    if n <= 0:
+        return [0]
+    return [n] + countdown(n - 1)
+
+print(countdown(5))
+
+def is_palindrome(text):
+    if len(text) <= 1:
+        return True
+    if text[0] != text[-1]:
+        return False
+    return is_palindrome(text[1:-1])
+
+print(is_palindrome("racecar"))
+
+def power(base, exp):
+    if exp == 0:
+        return 1
+    return base * power(base, exp - 1)
+
+print(power(2, 4)
