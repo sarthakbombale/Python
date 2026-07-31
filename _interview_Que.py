@@ -56,3 +56,65 @@ def max_sub_array(nums: list[int]) -> int:
     return max_global
 
 print(max_sub_array([-2, 1, -3, 4, -1, 2, 1, -5, 4]))
+
+class UserProfile:
+    def __init__(self, user_id: int, username: str, role: str):
+        self.user_id = user_id
+        self.username = username
+        self.role = role
+
+def fetch_user_role(user: UserProfile) -> str:
+    if user.role == "admin":
+        return "Access level: Full Console Access"
+    return "Access level: Limited Viewer Access"
+
+print(fetch_user_role(UserProfile(101, "sarthak_dev", "admin")))
+
+
+from typing import TypeVar, Generic, Union
+
+T = TypeVar('T')
+
+class APIResponse(Generic[T]):
+    def __init__(self, status: str, data: T, code: int):
+        self.status = status
+        self.data = data
+        self.code = code
+
+def handle_api_response(response: APIResponse[T]) -> Union[T, str]:
+    if response.code == 200:
+        return response.data
+    return "Error: System failed to fetch records."
+
+print(handle_api_response(APIResponse("success", ["item1", "item2"], 200)))
+
+
+class OperationalConfig:
+    def __init__(self, api_key: str, endpoints: list[str], timeout: int = None):
+        self._api_key = api_key
+        self.endpoints = endpoints
+        self.timeout = timeout
+
+def initialize_system(config: OperationalConfig) -> str:
+    time_limit = config.timeout if config.timeout is not None else 30
+    return f"System loaded with API key reference using {time_limit}s fallback delay."
+
+print(initialize_system(OperationalConfig("secret_abc123", ["/v1/status"])))
+
+
+def render_network_ui(state: dict) -> str:
+    status = state.get("status")
+    if status == "success":
+        return f"Render items count: {len(state['records'])}"
+    elif status == "error":
+        return f"Alert dialogue error box: {state['message']}"
+    return "Unknown state"
+
+print(render_network_ui({"status": "success", "records": ["user1", "user2"]}))
+
+
+def extract_dict_keys(obj: dict, keys: list) -> list:
+    return [obj[key] for key in keys if key in obj]
+
+product_data = {"sku": "LAP-102", "price": 1200, "stock": 45}
+print(extract_dict_keys(product_data, ["price", "stock"]))
