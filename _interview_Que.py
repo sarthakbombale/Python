@@ -335,3 +335,51 @@ def max_sub_array(nums: list[int]) -> int:
     return max_global
 
 print(max_sub_array([-2, 1, -3, 4, -1, 2, 1, -5, 4]))
+
+def two_sum(nums: list[int], target: int) -> list[int]:
+    lookup = {}
+    for index, num in enumerate(nums):
+        complement = target - num
+        if complement in lookup:
+            return [lookup[complement], index]
+        lookup[num] = index
+    return []
+
+print(two_sum([2, 7, 11, 15], 9))
+                                             
+def group_anagrams(words: list[str]) -> list[list[str]]:
+    cache = {}
+    for word in words:
+        sorted_word = "".join(sorted(word))
+        if sorted_word not in cache:
+            cache[sorted_word] = []
+        cache[sorted_word].append(word)
+    return list(cache.values())
+
+print(group_anagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))
+def merge_intervals(intervals: list[list[int]]) -> list[list[int]]:
+    if not intervals:
+        return []
+    intervals.sort(key=lambda x: x[0])
+    merged = [intervals[0]]
+    for current in intervals[1:]:
+        prev_start, prev_end = merged[-1]
+        curr_start, curr_end = current
+        if curr_start <= prev_end:
+            merged[-1][1] = max(prev_end, curr_end)
+        else:
+            merged.append(current)
+    return merged
+
+print(merge_intervals([[1, 3], [2, 6], [8, 10], [15, 18]]))
+def max_profit(prices: list[int]) -> int:
+    min_price = float('inf')
+    max_profit_val = 0
+    for price in prices:
+        if price < min_price:
+            min_price = price
+        elif price - min_price > max_profit_val:
+            max_profit_val = price - min_price
+    return max_profit_val
+
+print(max_profit([7, 1, 5, 3, 6, 4]))
