@@ -587,3 +587,59 @@ def max_profit(prices: list[int]) -> int:
     return max_profit_val
 
 print(max_profit([7, 1, 5, 3, 6, 4]))
+
+def find_missing_number(nums: list[int]) -> int:
+    n = len(nums) + 1
+    expected_sum = (n * (n + 1)) // 2
+    return expected_sum - sum(nums)
+
+print(find_missing_number([3, 0, 1]))
+
+
+def unique_paths(m: int, n: int) -> int:
+    row = [1] * n
+    for i in range(m - 1):
+        new_row = [1] * n
+        for j in range(n - 2, -1, -1):
+            new_row[j] = new_row[j + 1] + row[j]
+        row = new_row
+    return row[0]
+
+print(unique_paths(3, 7))
+
+
+def coin_change(coins: list[int], amount: int) -> int:
+    dp = [amount + 1] * (amount + 1)
+    dp[0] = 0
+    for a in range(1, amount + 1):
+        for c in coins:
+            if a - c >= 0:
+                dp[a] = min(dp[a], 1 + dp[a - c])
+    return dp[amount] if dp[amount] != amount + 1 else -1
+
+print(coin_change([1, 2, 5], 11))
+
+
+def length_of_lis(nums: list[int]) -> int:
+    if not nums:
+        return 0
+    dp = [1] * len(nums)
+    for i in range(len(nums) - 1, -1, -1):
+        for j in range(i + 1, len(nums)):
+            if nums[i] < nums[j]:
+                dp[i] = max(dp[i], 1 + dp[j])
+    return max(dp)
+
+print(length_of_lis([10, 9, 2, 5, 3, 7, 101, 18]))
+
+
+def is_anagram(s: str, t: str) -> bool:
+    if len(s) != len(t):
+        return False
+    count_s, count_t = {}, {}
+    for i in range(len(s)):
+        count_s[s[i]] = 1 + count_s.get(s[i], 0)
+        count_t[t[i]] = 1 + count_t.get(t[i], 0)
+    return count_s == count_t
+
+print(is_anagram("anagram", "nagaram"))
