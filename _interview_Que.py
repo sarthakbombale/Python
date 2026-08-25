@@ -643,3 +643,94 @@ def is_anagram(s: str, t: str) -> bool:
     return count_s == count_t
 
 print(is_anagram("anagram", "nagaram"))
+
+def check_subtree(root1, root2) -> bool:
+    if not root2:
+        return True
+    if not root1:
+        return False
+    if is_same_tree(root1, root2):
+        return True
+    return check_subtree(root1.left, root2) or check_subtree(root1.right, root2)
+
+def is_same_tree(r1, r2) -> bool:
+    if not r1 and not r2:
+        return True
+    if r1 and r2 and r1.val == r2.val:
+        return is_same_tree(r1.left, r2.left) and is_same_tree(r1.right, r2.right)
+    return False
+
+
+def num_islands(grid: list[list[str]]) -> int:
+    if not grid:
+        return 0
+    count = 0
+    for r in range(len(grid)):
+        for c in range(len(grid[0])):
+            if grid[r][c] == "1":
+                dfs_clear(grid, r, c)
+                count += 1
+    return count
+
+def dfs_clear(grid, r, c):
+    if r < 0 or c < 0 or r >= len(grid) or c >= len(grid[0]) or grid[r][c] == "0":
+        return
+    grid[r][c] = "0"
+    dfs_clear(grid, r + 1, c)
+    dfs_clear(grid, r - 1, c)
+    dfs_clear(grid, r, c + 1)
+    dfs_clear(grid, r, c - 1)
+
+print(num_islands([
+  ["1","1","0","0","0"],
+  ["1","1","0","0","0"],
+  ["0","0","1","0","0"],
+  ["0","0","0","1","1"]
+]))
+
+
+def daily_temperatures(temperatures: list[int]) -> list[int]:
+    results = [0] * len(temperatures)
+    stack = []
+    for idx, temp in enumerate(temperatures):
+        while stack and temp > temperatures[stack[-1]]:
+            prev_idx = stack.pop()
+            results[prev_idx] = idx - prev_idx
+        stack.append(idx)
+    return results
+
+print(daily_temperatures([73, 74, 75, 71, 69, 72, 76, 73]))
+
+
+def clone_graph(node):
+    if not node:
+        return None
+    old_to_new = {}
+    
+    def dfs(curr_node):
+        if curr_node in old_to_new:
+            return old_to_new[curr_node]
+        copy = Node(curr_node.val)
+        old_to_new[curr_node] = copy
+        for neighbor in curr_node.neighbors:
+            copy.neighbors.append(dfs(neighbor))
+        return copy
+        
+    return dfs(node)
+
+
+def find_k_frequent(nums: list[int], k: int) -> list[int]:
+    counts = {}
+    freq_buckets = [[] for _ in range(len(nums) + 1)]
+    for n in nums:
+        counts[n] = 1 + counts.get(n, 0)
+    for n, c in counts.items():
+        freq_buckets[c].append(n)
+    result = []
+    for i in range(len(freq_buckets) - 1, 0, -1):
+        for n in freq_buckets[i]:
+            result.append(n)
+            if len(result) == k:
+                return result
+
+print(find_k_frequent([1, 1, 1, 2, 2, 3], 2))
